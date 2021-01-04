@@ -37,12 +37,13 @@
 		{% for item in news %}
 		<div class="card mb-3">
 			<div class="card-header">
-				{{ item.my_func }}
 				Категория: {{ item.category.title }}
 			</div>
 			<div class="card-body">
 				<h5 class="card-title">{{ item.title }}</h5>
+				{% autoescape off %}
 				<p class="card-text">{{ item.content }}</p>
+				{% endautoescape %}
 				<a href="#" class="btn btn-primary">Read more...</a>
 			</div>
 			<div class="card-footer text-muted">
