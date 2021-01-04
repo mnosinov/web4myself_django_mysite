@@ -40,10 +40,8 @@
 				Категория: {{ item.category.title }}
 			</div>
 			<div class="card-body">
-				<h5 class="card-title">{{ item.title }}</h5>
-				{% autoescape off %}
+				<h5 class="card-title {% cycle 'text-danger' 'text-success' 'text-warning' %}">{{ item.title }}</h5>
 				<p class="card-text">{{ item.content }}</p>
-				{% endautoescape %}
 				<a href="#" class="btn btn-primary">Read more...</a>
 			</div>
 			<div class="card-footer text-muted">
