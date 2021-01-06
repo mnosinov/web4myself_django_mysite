@@ -32,7 +32,9 @@
 
 <div class="container mt-3">
 	<h1>{{ title }}</h1>
-	{{ news.count }}
+	{{ 123456 | filesizeformat }}
+	{{ 123456789 | filesizeformat }}
+	{{ 112345678923456789 | filesizeformat }}
 	<div class="row">
 		<div class="col-md-12">
 		{% for item in news %}
