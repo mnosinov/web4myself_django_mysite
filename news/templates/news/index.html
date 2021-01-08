@@ -32,11 +32,17 @@
 
 <div class="container mt-3">
 	<h1>{{ title }}</h1>
-	{{ 123456 | filesizeformat }}
-	{{ 123456789 | filesizeformat }}
-	{{ 112345678923456789 | filesizeformat }}
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-4">
+		<div class="list-group">
+			{% for item in categories %}
+			<a href="/category/{{ item.pk }}" class="list-group-item list-group-item-action">
+				{{ item.title }}
+		  </a>
+			{% endfor %}
+		</div>
+		</div>
+		<div class="col-md-8">
 		{% for item in news %}
 		<div class="card mb-3">
 			<div class="card-header">
