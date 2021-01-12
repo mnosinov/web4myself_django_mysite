@@ -117,3 +117,7 @@ media/
 # vim
 *.swo
 *.swp
+
+# PyCharm files and folders
+.idea/
+
