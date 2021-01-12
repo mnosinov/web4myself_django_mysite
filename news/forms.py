@@ -17,6 +17,7 @@ class NewsForm(forms.Form):
                                   }))
 
     is_published = forms.BooleanField(label='Опубликовано?', initial=True,
+                                      required=False,
                                       widget=forms.CheckboxInput(
                                           attrs={
                                               "class": "form-check-input",
