@@ -7,6 +7,11 @@ from .forms import NewsForm
 
 class HomeNews(ListView):
     model = News
+    template_name = 'news/home_news_list.html'
+    context_object_name = 'news'
+    extra_context = {'title': 'Главная'}    # recommended to use for static data
+                                            # for dynamic data use get_context_data()
+
 
 def index(request):
     news = News.objects.all()
