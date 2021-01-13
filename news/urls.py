@@ -1,6 +1,6 @@
 from django.urls import path
-# from .views import, get_category
-from .views import view_news, add_news, HomeNews, NewsByCategory, ViewNews
+# from .views import, get_category, view_news, add_news
+from .views import HomeNews, NewsByCategory, ViewNews, CreateNews
 
 
 urlpatterns = [
@@ -12,5 +12,6 @@ urlpatterns = [
          name='category'),
     # path('news/<int:news_id>/', view_news, name='view_news'),
     path('news/<int:pk>/', ViewNews.as_view(), name='view_news'),
-    path('news/add_news/', add_news, name='add_news'),
+    # path('news/add_news/', add_news, name='add_news'),
+    path('news/add_news/', CreateNews.as_view(), name='add_news'),
 ]
