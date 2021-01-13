@@ -17,6 +17,9 @@ class HomeNews(ListView):
         context['title'] = 'Главная страница'
         return context
 
+    def get_queryset(self):
+        return News.objects.filter(is_published=True)
+
 
 def index(request):
     news = News.objects.all()
