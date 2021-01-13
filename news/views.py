@@ -36,9 +36,12 @@ class NewsByCategory(ListView):
         return News.objects.filter(category_id=self.kwargs['category_id'],
                                    is_published=True)
 
+
 class ViewNews(DetailView):
     model = News
-    pk_url_kwarg = 'news_id'
+    context_object_name = 'news_item'
+    # pk_url_kwarg = 'news_id'
+    # template_name = 'news/news_detail.html'
 
 
 # def index(request):

@@ -11,6 +11,6 @@ urlpatterns = [
          NewsByCategory.as_view(extra_context={'title': 'какой-то тайтл'}),
          name='category'),
     # path('news/<int:news_id>/', view_news, name='view_news'),
-    path('news/<int:news_id>/', ViewNews.as_view(), name='view_news'),
+    path('news/<int:pk>/', ViewNews.as_view(), name='view_news'),
     path('news/add_news/', add_news, name='add_news'),
 ]
