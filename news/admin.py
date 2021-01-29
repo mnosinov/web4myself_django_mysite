@@ -16,6 +16,8 @@ class NewsAdmin(admin.ModelAdmin):
         if obj.photo:
             return mark_safe(f'<img src="{obj.photo.url}" width="75">')
 
+    get_photo.short_description = 'Миниатюра'
+
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'title')
