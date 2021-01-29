@@ -55,7 +55,8 @@ class CreateNews(LoginRequiredMixin, CreateView):
     form_class = NewsForm
     template_name = 'news/add_news.html'
     # success_url = reverse_lazy('home')
-    login_url = '/admin/'
+    # login_url = '/admin/'
+    raise_exception = True
 
 
 # def index(request):
