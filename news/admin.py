@@ -5,12 +5,14 @@ from .models import News, Category
 
 
 class NewsAdmin(admin.ModelAdmin):
+    # customize list of news in admin panel
     list_display = ('id', 'title', 'category', 'created_at', 'updated_at',
                     'is_published', 'views', 'get_photo')
     list_display_links = ('id', 'title')
-    search_fields = ('title', 'content')
     list_editable = ('is_published', 'views')
     list_filter = ('is_published', 'category')
+    search_fields = ('title', 'content')
+    # customize edit news page in admin panel
     fields = ('title', 'category', 'content', 'photo', 'get_photo',
               'is_published', 'views', 'created_at', 'updated_at')
     readonly_fields = ('get_photo', 'views', 'created_at', 'updated_at')
