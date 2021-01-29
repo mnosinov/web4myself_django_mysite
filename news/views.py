@@ -4,25 +4,28 @@ from django.urls import reverse_lazy
 
 from .models import News, Category
 from .forms import NewsForm
+from .utils import MyMixin
 
 
-class HomeNews(ListView):
+class HomeNews(MyMixin, ListView):
     model = News
     template_name = 'news/home_news_list.html'
     context_object_name = 'news'
+    mixin_prop = 'hello world'
     # extra_context = {'title': 'Главная'}    # recommended to use for static data
                                             # for dynamic data use get_context_data()
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Главная страница'
+        context['title'] = self.get_upper('Главная страница')
+        context['mixin_prop'] = self.get_prop()
         return context
 
     def get_queryset(self):
         return News.objects.filter(is_published=True).select_related('category')
 
 
-class NewsByCategory(ListView):
+class NewsByCategory(MyMixin, ListView):
     model = News
     template_name = 'news/home_news_list.html'
     context_object_name = 'news'
@@ -30,7 +33,9 @@ class NewsByCategory(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = Category.objects.get(pk=self.kwargs['category_id'])
+        context['title'] = self.get_upper(
+            Category.objects.get(pk=self.kwargs['category_id'])
+        )
         return context
 
     def get_queryset(self):
