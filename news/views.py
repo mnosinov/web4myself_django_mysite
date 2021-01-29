@@ -25,6 +25,7 @@ class HomeNews(MyMixin, ListView):
     mixin_prop = 'hello world'
     # extra_context = {'title': 'Главная'}    # recommended to use for static data
                                             # for dynamic data use get_context_data()
+    paginate_by = 2
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
