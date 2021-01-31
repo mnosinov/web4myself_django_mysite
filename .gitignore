@@ -115,6 +115,7 @@ media/
 # !**/migrations/__init__.py
 
 # vim
+Session.vim
 *.swo
 *.swp
 
