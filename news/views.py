@@ -59,7 +59,7 @@ def test(request):
                 form.cleaned_data['content'],
                 str(os.getenv('EMAIL_HOST_USER')),
                 ['mnosinov@gmail.com',],
-                fail_silently=False)
+                fail_silently=True)
             if mail:
                 messages.success(request, 'Письмо отправлено!')
                 return redirect('test')
