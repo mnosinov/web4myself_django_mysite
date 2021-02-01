@@ -58,7 +58,7 @@ def contact(request):
                 form.cleaned_data['subject'],
                 form.cleaned_data['content'],
                 str(os.getenv('EMAIL_HOST_USER')),
-                ['mnosinov@gmail.com',],
+                ['mnosinov@gmail.com', ],
                 fail_silently=True)
             if mail:
                 messages.success(request, 'Письмо отправлено!')
