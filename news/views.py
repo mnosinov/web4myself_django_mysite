@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView
 from django.urls import reverse_lazy
@@ -5,10 +6,16 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.contrib import messages
 from django.contrib.auth import login, logout
+from django.core.mail import send_mail
+
+from dotenv import load_dotenv
 
 from .models import News, Category
-from .forms import NewsForm, UserRegisterForm, UserLoginform
+from .forms import NewsForm, UserRegisterForm, UserLoginform, ContactForm
 from .utils import MyMixin
+
+
+load_dotenv()
 
 
 def register(request):
@@ -44,12 +51,25 @@ def user_logout(request):
 
 
 def test(request):
-    objects = ['john1', 'paul2', 'george3', 'ringo4', 'john5', 'paul6',
-               'george7']
-    paginator = Paginator(objects, 2)
-    page_num = request.GET.get('page', 1)
-    page_objects = paginator.get_page(page_num)
-    return render(request, 'news/test.html', {'page_obj': page_objects})
+    if request.method == 'POST':
+        form = ContactForm(data=request.POST)
+        if form.is_valid():
+            mail = send_mail(
+                form.cleaned_data['subject'],
+                form.cleaned_data['content'],
+                str(os.getenv('EMAIL_HOST_USER')),
+                ['mnosinov@gmail.com',],
+                fail_silently=False)
+            if mail:
+                messages.success(request, 'Письмо отправлено!')
+                return redirect('test')
+            else:
+                messages.error(request, 'Ошибка отправки. Это выводится когда fail_ilently=True')
+        else:
+            messages.error(request, 'Ошибка отправки')
+    else:
+        form = ContactForm()
+    return render(request, 'news/test.html', {"form": form})
 
 
 class HomeNews(MyMixin, ListView):
