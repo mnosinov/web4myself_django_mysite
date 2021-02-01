@@ -122,3 +122,5 @@ Session.vim
 # PyCharm files and folders
 .idea/
 
+# Django cache content
+django_cache/*
