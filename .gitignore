@@ -123,4 +123,4 @@ Session.vim
 .idea/
 
 # Django cache content
-django_cache/*
+/django_cache/*
