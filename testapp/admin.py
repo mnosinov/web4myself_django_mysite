@@ -1,3 +1,7 @@
 from django.contrib import admin
+from mptt.admin import MPTTModelAdmin
+from .models import Rubric, Article
 
-# Register your models here.
+
+admin.site.register(Rubric, MPTTModelAdmin)
+admin.site.register(Article)
